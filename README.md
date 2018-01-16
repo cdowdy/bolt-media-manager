@@ -1,0 +1,1 @@
+A Bolt CMS extension to manage Media Files.  
