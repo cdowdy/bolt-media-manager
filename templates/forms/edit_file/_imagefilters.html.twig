@@ -1,0 +1,18 @@
+<fieldset class=" fieldset">
+    <p id="filterButtonTitle">
+        Image Filters
+    </p>
+
+    <div class="mm-edit-filter-group"
+         role="group"
+         aria-label="Available Image Filters">
+        <label :for="index"
+               v-for="(filter, index) in Colormatrix">
+            <input class="btn btn-secondary"
+                   type="checkbox"
+                   :value="filter.name"
+            />
+
+        </label>
+    </div>
+</fieldset>

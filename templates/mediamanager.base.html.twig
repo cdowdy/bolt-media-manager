@@ -1,0 +1,183 @@
+{% extends '_base/_page-nav.twig' %}
+
+
+{% block page_title __("Bolt Media Manager") %}
+
+
+
+
+{% block page_main %}
+<div id="mediamanagerApp">
+
+
+    <div class="row" >
+        <div class="col-xs-12 col-md-7">
+            <p>
+                Manager your Media Files.
+            </p>
+            <p>Directory: <b>{{ directory }}</b></p>
+        </div>
+        {#<div class="col-xs-12">#}
+            {#{{ dump(mm_paths) }}#}
+        {#</div>#}
+        <div class="col-xs-12 col-md-5">
+            <p><b>Key:</b></p>
+            <dl>
+                <dt>
+                    <div style="background: #33363e; width: 80px; height: 20px;"></div>
+                </dt>
+                <dd>
+                    This color denotes an audio file;
+                </dd>
+                <dt>
+                    <div style="background: #204460; width: 80px; height: 20px;"></div>
+                </dt>
+                <dd>
+                    This color denotes an image file;
+                </dd>
+                <dt>
+                    <div style="background: #24B08D; width: 80px; height: 20px;"></div>
+                </dt>
+                <dd>
+                    This color denotes a video file;
+                </dd>
+            </dl>
+        </div>
+    </div>
+    {#<div class="row">#}
+        {#<hr>#}
+        {#<div class="col-xs-12 col-md-6">#}
+            {#<form action="" class="form-horizontal">#}
+                {#<div class="form-group">#}
+                    {#<label for="searchMMFiles"#}
+                           {#class="col-xs-12 col-md-4 control-label">#}
+                        {#Search Your Media Files#}
+                    {#</label>#}
+                    {#<div class="col-xs-12 col-md-6">#}
+                        {#<input id="searchMMFiles" class="form-control" type="search">#}
+                    {#</div>#}
+                {#</div>#}
+            {#</form>#}
+        {#</div>#}
+        {#<div class="col-xs-12 col-md-6">#}
+            {#<p>Filter Your Media By File Type</p>#}
+            {#<ul class="list-inline list-unstyled">#}
+                {#<li>#}
+                    {#<button class="btn btn-mm-audio">Audio</button>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<button class="btn btn-mm-image">Images</button>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<button class="btn btn-mm-video">Video</button>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</div>#}
+    <media-manager-app :media="{{ mm_files|json_encode }}" :paths="{{ mm_paths|json_encode }}"></media-manager-app>
+
+    {#<div class="row">#}
+        {#<hr>#}
+        {#<div class="mm-block-grid">#}
+
+
+            {#{% for key, value in mm_files %}#}
+                {#<div class="mm-block-grid-item image-container" >#}
+                    {#<div class=" mm-card ">#}
+                {#{% if 'image' in value.mimeType %}#}
+                    {#<div class="mm-card-divider mm-card-divider-image">#}
+                        {#<p>{{ value.filename|lower }}</p>#}
+                    {#</div><!-- /.mm-card-divider -->#}
+
+                    {#<div class="mm-card-media-container">#}
+                        {#{% if value.mimeType != 'image/tiff' %}#}
+                            {#<a href="/{{ directory }}/{{ value.filename}}"#}
+                               {#class="image-popup-fit-width"#}
+                               {#title="Preview: {{ value.filename }}">#}
+                                {#<img src="/files/{{ value.filePath }}"#}
+                                     {#alt="{{ value.filename }}"#}
+                                     {#id="{{ value.filename }}"#}
+                                     {#class="mm-card-media lazy">#}
+                            {#</a>#}
+                        {#{% else %}#}
+                            {#<p style="color: #fff">Tif Images Cannot Be Displayed In a Browser</p>#}
+                        {#{% endif %}#}
+                    {#</div>#}
+                {#{% endif %}#}
+
+                        {#{% if 'video' in value.mimeType %}#}
+                            {#<div class="mm-card-divider mm-card-divider-video">#}
+                                {#<p>{{ value.filename|lower }}</p>#}
+                            {#</div><!-- /.mm-card-divider -->#}
+
+                            {#<div class="mm-card-media-container">#}
+                                {#<video controls#}
+                                       {#muted#}
+                                       {#preload="auto"#}
+                                       {#src="/files/{{ value.filePath }}"#}
+                                       {#class="mm-card-media"></video>#}
+                            {#</div>#}
+
+
+
+                        {#{% endif %}#}
+
+                        {#{% if 'audio' in value.mimeType %}#}
+                            {#<div class="mm-card-divider mm-card-divider-audio">#}
+                                {#<p>{{ value.filename|lower }}</p>#}
+                            {#</div><!-- /.mm-card-divider -->#}
+                            {#<div class="mm-card-media-container">#}
+                            {#<audio controls#}
+                                   {#muted#}
+                                   {#src="/files/{{ value.filePath }}"#}
+                                   {#class="mm-card-media mm-card-media-audio"></audio>#}
+                            {#</div>#}
+                        {#{% endif %}#}
+
+                        {#<div class="mm-card-section">#}
+                            {#<ul class="mm-card-list">#}
+                                {#<li class="cached-image-name">#}
+                                    {#<strong>Name: </strong> {{ value.filename|lower }}#}
+                                {#</li>#}
+                            {#</ul>#}
+                            {#<button class="btn btn-danger deletebutton"#}
+                                    {#type="button"#}
+                                    {#id="">#}
+                                {#Delete Image#}
+                            {#</button>#}
+                            {#<hr>#}
+                            {#<ul class="list-inline list-unstyled edit-media-list">#}
+                                {#<li>#}
+                                    {#<button type="button" class="btn btn-sucess"#}
+                                            {#data-toggle="tooltip"#}
+                                            {#data-placement="top"#}
+                                            {#title="Edit File">#}
+                                        {#<i class="fa fa-edit"></i>#}
+                                    {#</button>#}
+                                {#</li>#}
+                                {#<li>#}
+                                    {#<button type="button" class="btn btn-info"#}
+                                            {#data-toggle="tooltip"#}
+                                            {#data-placement="top"#}
+                                            {#title="Copy File">#}
+                                        {#<i class="fa fa-copy"></i>#}
+                                    {#</button>#}
+                                {#</li>#}
+                                {#<li>#}
+                                    {#<button type="button"#}
+                                            {#class="btn btn-danger"#}
+                                            {#data-toggle="tooltip"#}
+                                            {#data-placement="top"#}
+                                            {#title="Delete File">#}
+                                        {#<i class="fa fa-trash"></i>#}
+                                    {#</button>#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#{% endfor %}#}
+        {#</div>#}
+    {#</div>#}
+</div>
+{% endblock page_main %}

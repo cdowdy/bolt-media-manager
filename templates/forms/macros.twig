@@ -1,0 +1,84 @@
+{% macro fieldsetGroup(title, groupItems) %}
+    <fieldset class="fieldset mm-edit-checkbox-group">
+        {% if  title %}
+        <p id="filterButtonTitle">
+           {{ title }}
+        </p>
+        {% endif %}
+
+        <div class="mm-edit-filter-group"
+             role="group"
+             aria-label="Available Image Filters">
+            {% for key, value in groupItems %}
+            <label for="{{ loop.index }}"
+                   class="mm-filter-group-label">
+                <input class="mm-edit-checkbox" id="{{ value }}"
+                       type="checkbox"
+                       data-filterOptions="none"
+                       value="{{ value }}"
+                />
+                {{ value }}
+            </label>
+            {% endfor %}
+        </div>
+    </fieldset>
+{% endmacro fieldsetGroup %}
+
+{% macro colorInput() %}
+    <fieldset id="removeColor" class="fieldset">
+        <label for="removeColor-checkbox">
+            <input type="checkbox"
+                   id="removeColor-checkbox"
+                   value="RemoveColor"
+                   class=""
+            >
+            Remove Color
+        </label>
+        <label for="colorToRemove">Color To Remove</label>
+        <input type="color"
+               id="colorToRemove"
+               data-filter="remove-color"
+               value="#204460"
+               disabled
+        >
+        <label>Distance:
+            <input id="remove-color-distance"
+                   value="0.02"
+                   min="0"
+                   max="1"
+                   step="0.01"
+                   data-filter="remove-color"
+                   type="range" disabled>
+        </label>
+    </fieldset>
+{% endmacro colorInput %}
+
+{% macro ranges(ranges) %}
+    {% for key, value in ranges %}
+        <fieldset class="fieldset mm-edit-ranges mm-edit-checkbox-group" >
+            <div class="form-group" >
+                <label for="{{ value.name }}">
+                    <input type="checkbox" data-filtertype="{{ value.filterOptions }}"
+                           id="{{ value.name }}">
+                    {{ value.name }}
+                </label>
+                {% for key, value in value.rangeInputs %}
+                    <label for="{{ value.name }}">
+                        {{ value.name }}
+                        <input type="range"
+                               id={{ value.name }}"
+                               value="{{ value.value }}"
+                               min="{{ value.min }}"
+                               max="{{ value.max }}"
+                               step="{{ value.step }}"
+                               data-filter="{{ value.filter }}"
+                               disabled>
+                    </label>
+                {% endfor %}
+            </div>
+        </fieldset>
+    {% endfor %}
+{% endmacro ranges %}
+
+
+

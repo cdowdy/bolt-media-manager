@@ -1,0 +1,386 @@
+{% extends '_base/_page-nav.twig' %}
+
+
+{% block page_title __("Bolt Media Manager") %}
+
+
+
+
+{% block page_main %}
+    <div id="">
+    <div class="row">
+        <div class="col-xs-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ appPaths.allFiles }}">
+                        Files
+                    </a>
+                </li>
+                {% for key, value in crumbs %}
+
+                    <li {% if loop.last %} class="active" {% endif %}>
+                        {% if not loop.last %}
+                        <a href="{{ key }}">
+                            {{ value }}
+                        </a>
+                        {% else %}
+                            {{ value }}
+                            {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+            {#{{ dump(request) }}#}
+            {#{{ dump(file) }}#}
+            {#{{ dump(appPaths) }}#}
+            <hr>
+        </div>
+    </div>
+
+        <div class="row" >
+            <div class="col-xs-12">
+                <p>
+                    Edit your file
+                </p>
+            </div>
+
+            {#<media-manager-edit :media="{{ file|json_encode }}"#}
+                                {#:paths="{{ appPaths|json_encode }}">#}
+
+            {#</media-manager-edit>#}
+
+            <div class="col-xs-12 col-md-7">
+                <div class="mm-card">
+                    <canvas id="mmcanvas" width="678" height="484"></canvas>
+                    <img id="mmcanvas-file" style="display: none;"
+                         src="/files/{{ file }}" alt="">
+                    <div class="mm-card-section">
+                        {#<ul class="mm-card-list">#}
+
+                            {#<li>#}
+                                {#Actual Image Width: <span id="actualImgWidth"></span>#}
+                            {#</li>#}
+
+                            {#<li>#}
+                                {#Actual Image Height <span id="actualImgHeight"></span>#}
+                            {#</li>#}
+
+                        {#</ul>#}
+                        <ul class="list-inline list-unstyled">
+                            <li>
+                                <a href="#" class="help-link"
+                                   id="help-link">
+                                    <i role="presentation"
+                                       class="fa fa-question-circle"></i>
+                                    Image Info
+                                </a>
+                                <div id="help-tool-dialog"
+                                     role="alertdialog"
+                                     tabindex="-1"
+                                     aria-describedby="dialog-body"
+                                     aria-label="Help">
+                                    <button type="button"
+                                            id="dialog-close">
+                                        <i class="fa fa-times"></i>
+                                        <span class="offscreen">Close</span>
+                                    </button>
+                                    <div id="dialog-body">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                Actual Image Width: <span id="actualImgWidth"></span>
+                                            </li>
+                                            <li>
+                                                Actual Image Height <span id="actualImgHeight"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="mm-crop-trigger">
+                                    <i class="fa fa-crop"></i> crop image
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-image"></i> watermark image
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-md-5">
+                <!--<mm-edit-image-form></mm-edit-image-form>-->
+                <div class="mm-card">
+                    <div class="mm-card-divider">
+                        Edit Options
+                    </div>
+                    <form action="">
+
+                        {#<fieldset class="fieldset">#}
+                            {#<div class="checkbox-inline">#}
+                                {#<label for="mm-webgl"#}
+                                       {#class="active">#}
+                                    {#<input type="checkbox"#}
+                                           {#id="mm-webgl" checked >#}
+                                    {#Use WebGL#}
+                                {#</label>#}
+                                {#<p class="help-block">#}
+                                    {#Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API"#}
+                                           {#class="">WebGL#}
+                                    {#</a> for your filters. If you have issues or are using an old browser un check this box#}
+                                {#</p>#}
+                            {#</div>#}
+                        {#</fieldset>#}
+                        <fieldset class="fieldset mm-edit-checkbox-group mm-edit-grayscale">
+                            <div class="checkbox-inline">
+
+                                <label for="grayscale">
+                                    <input type="checkbox"
+                                           id="grayscale"
+                                           value="Grayscale"
+                                           data-filterOptions="one"
+                                           class="mm-edit-checkbox"
+                                    >
+                                    Grayscale
+                                </label>
+
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input class="mm-edit-radio"
+                                           id="average"
+                                           type="radio"
+                                           name="mode"
+                                           data-filter="grayscale"
+                                           checked
+                                           value="average"> Average
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input class="mm-edit-radio"
+                                           type="radio"
+                                           name="mode"
+                                           data-filter="grayscale"
+                                           value="luminosity"> Luminosity
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input class="mm-edit-radio"
+                                           type="radio"
+                                           name="mode"
+                                           data-filter="grayscale"
+                                           value="lightness"> Lightness
+                                </label>
+                            </div>
+                        </fieldset>
+                        {% set Colormatrix = [
+                            'Invert','Sepia', 'BlackWhite',
+                            'Brownie', 'Vintage','Kodachrome',
+                            'Technicolor', 'Polaroid'
+                        ]
+                        %}
+                        {% set ranges = [
+                            { name: 'Brightness',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Brightness',
+                                    name: 'Value',
+                                    value: '0.1',
+                                    min: '-1',
+                                    max: '1',
+                                    step: '0.003921'
+                                }
+                            ]
+                            },
+                            {name: 'Gamma',
+                                filterOptions: 'multiple',
+                                rangeInputs: [
+                                {
+                                    filter: 'Gamma',
+                                    name: 'Red',
+                                    value: '1',
+                                    min: '0.2',
+                                    max: '2.2',
+                                    step: '0.003921'
+                                },
+                                {
+                                    filter: 'Gamma',
+                                    name: 'Green',
+                                    value: '1',
+                                    min: '0.2',
+                                    max: '2.2',
+                                    step: '0.003921'
+                                },
+                                {
+                                    filter: 'Gamma',
+                                    name: 'Blue',
+                                    value: '1',
+                                    min: '0.2',
+                                    max: '2.2',
+                                    step: '0.003921'
+                                },
+                            ]
+                            },
+                            {name: 'Contrast',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Contrast',
+                                    name: 'Value',
+                                    value: '0',
+                                    min: '-1',
+                                    max: '1',
+                                    step: '0.003921'
+                                }
+                            ]
+                            },
+                            {name: 'Saturation',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Saturation',
+                                    name: 'Value',
+                                    value: '0',
+                                    min: '-1',
+                                    max: '1',
+                                    step: '0.003921'
+                                }
+                            ]
+                            },
+                            {name: 'Hue',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Hue',
+                                    name: 'Value',
+                                    value: '0',
+                                    min: '-2',
+                                    max: '2',
+                                    step: '0.002'
+                                }
+                            ]
+                            },
+                            {name: 'Noise',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Noise',
+                                    name: 'Value',
+                                    value: '100',
+                                    min: '0',
+                                    max: '1000',
+                                    step: ''
+                                }
+                            ]
+                            },
+                            {name: 'Pixelate',
+                                filterOptions: 'one',
+                                rangeInputs: [
+                                {
+                                    filter: 'Pixelate',
+                                    name: 'Value',
+                                    value: '4',
+                                    min: '2',
+                                    max: '20',
+                                    step: ''
+                                }
+                            ]
+                            },
+                        ] %}
+                        {% import '@mediamanager/forms/macros.twig' as fieldset %}
+                        {% import '@mediamanager/components/accordion.html.twig' as accordion %}
+                        {#<div class="panel panel-default">#}
+                            {#<div class="panel-heading">#}
+                                {#{{ accordion.title('Grayscale') }}#}
+                            {#</div>#}
+                            {#<div class="panel-body" hidden>#}
+                                {#<fieldset class="fieldset mm-edit-checkbox-group mm-edit-grayscale">#}
+                                    {#<div class="checkbox-inline">#}
+
+                                        {#<label for="grayscale">#}
+                                            {#<input type="checkbox"#}
+                                                   {#id="grayscale"#}
+                                                   {#value="Grayscale"#}
+                                                   {#data-filterOptions="one"#}
+                                                   {#class="mm-edit-checkbox"#}
+                                            {#>#}
+                                            {#Grayscale#}
+                                        {#</label>#}
+
+                                    {#</div>#}
+                                    {#<div class="radio-inline">#}
+                                        {#<label>#}
+                                            {#<input class="mm-edit-radio"#}
+                                                   {#id="average"#}
+                                                   {#type="radio"#}
+                                                   {#name="mode"#}
+                                                   {#data-filter="grayscale"#}
+                                                   {#checked#}
+                                                   {#value="average"> Average#}
+                                        {#</label>#}
+                                    {#</div>#}
+                                    {#<div class="radio-inline">#}
+                                        {#<label>#}
+                                            {#<input class="mm-edit-radio"#}
+                                                   {#type="radio"#}
+                                                   {#name="mode"#}
+                                                   {#data-filter="grayscale"#}
+                                                   {#value="luminosity"> Luminosity#}
+                                        {#</label>#}
+                                    {#</div>#}
+                                    {#<div class="radio-inline">#}
+                                        {#<label>#}
+                                            {#<input class="mm-edit-radio"#}
+                                                   {#type="radio"#}
+                                                   {#name="mode"#}
+                                                   {#data-filter="grayscale"#}
+                                                   {#value="lightness"> Lightness#}
+                                        {#</label>#}
+                                    {#</div>#}
+                                {#</fieldset>#}
+                            {#</div>#}
+                        {#</div>#}
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {{ accordion.title('Image Filters') }}
+                            </div>
+                            <div class="panel-body" hidden>
+                                {{ fieldset.fieldsetGroup('Image Filters', Colormatrix) }}
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {{ accordion.title('Remove Color') }}
+                            </div>
+                            <div class="panel-body" hidden>
+                                {{ fieldset.colorInput() }}
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {{ accordion.title('Adjustments') }}
+                            </div>
+                            <div class="panel-body" hidden>
+                                {{ fieldset.ranges(ranges) }}
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+
+            {#<media-manager-app :media="{{ mm_files|json_encode }}" :paths="{{ mm_paths|json_encode }}"></media-manager-app>#}
+    </div>
+{% endblock page_main %}
