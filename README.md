@@ -8,4 +8,5 @@ in progress demos:
   <source src="srceenshots/demo.mp4" type="video/mp4">
 </video>
 
+
 ![Media manager demo showing how images can be manipulated](screenshots/demo.gif "Bolt Media manager demo")
