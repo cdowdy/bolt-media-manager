@@ -1,5 +1,7 @@
 A Bolt CMS extension to manage Media Files.  
 
+**Not Ready for use**  
+
 in progress demos:  
 
 <video width="320" height="240" controls>
