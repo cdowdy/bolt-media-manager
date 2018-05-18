@@ -1,0 +1,46 @@
+{
+    "name": "cdowdy/mediamanager",
+    "description": "A Bolt Extension To Edit and Manage your Media Files",
+    "type": "bolt-extension",
+    "keywords": [
+    ],
+    "require": {
+        "bolt/bolt": "^3.4",
+        "php-ffmpeg/php-ffmpeg": "^0.11.0"
+    },
+    "require-dev": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cory Dowdy",
+            "email": "cory@corydowdy.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Bolt\\Extension\\cdowdy\\mediamanager\\": [ "", "src/" ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bolt\\Extension\\cdowdy\\mediamanager\\Tests\\": "tests",
+            "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
+        }
+    },
+    "extra": {
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\cdowdy\\mediamanager\\MediaManagerExtension",
+        "bolt-icon": "mediamanager-icon.png",
+        "bolt-screenshots": [
+            "screenshots/mediamanager-",
+            "screenshots/mediamanager-",
+            "screenshots/mediamanager-",
+            "screenshots/mediamanager-",
+            "screenshots/mediamanager-",
+            "screenshots/mediamanager-"
+        ]
+    }
+}
