@@ -20,12 +20,12 @@ Encore
     .enableVueLoader()
 
     // will output as web/build/global.css
-    // .addStyleEntry('tinypng.styles.vue', './assets/scss/googlephotos.scss')
+    .addStyleEntry('mediamanager.styles', './assets/scss/mediamanager.scss')
 
     // allow sass/scss files to be processed
-    // .enableSassLoader(function(sassOptions) {}, {
-    //     resolveUrlLoader: false
-    // })
+    .enableSassLoader(function(sassOptions) {}, {
+        resolveUrlLoader: false
+    })
 
     // allow legacy applications to use $/jQuery as a global variable
     // .autoProvidejQuery()
