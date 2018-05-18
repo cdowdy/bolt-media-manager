@@ -1,0 +1,4 @@
+AcceptedMimeTypes:
+    images: [ 'JPG', 'JPEG', 'PNG', 'Webp', 'Gif' ]
+    video: [ 'MP4', 'Webm', 'AVI' ]
+    audio: [ ]
