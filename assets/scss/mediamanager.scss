@@ -1,0 +1,79 @@
+//@import "node_modules/sanitize.css/sanitize";
+
+// get all our variables
+@import "utilities/_variables";
+@import "utilities/_mixins";
+@import "utilities/_unit";
+//@import "base/_base";
+//@import "base/_typecsset";
+//@import "base/typography";
+@import "layout/_grid";
+
+//@import "layout/_header";
+//@import "layout/_navigation";
+//@import "layout/_footer";
+@import "components/accordion";
+@import "components/_cards";
+//@import "components/_spinners";
+@import "components/_buttons";
+@import "components/lists";
+@import "components/switches";
+//@import "components/_thumbnails";
+@import "components/lightbox";
+@import "components/forms";
+//@import "pages/_files";
+
+// foundations grid... regular css
+//@import "css/foundation-grid";
+// prism css
+
+//@import "css/prism";
+
+
+.betterthumbs-prime-spacer {
+  margin-top: 20px;
+}
+
+//.betterthumbs-doc-spacer {
+//  margin-top: 10px;
+//  border-top: 1px solid #cacaca;
+//}
+
+.heading {
+  border-bottom: 1px solid $border-hr-color;
+}
+.subheading {
+  color: lighten( $font-color, 5);
+  //font-size: rem-calc(26);
+  margin-top: 1em;
+}
+
+:focus {
+  outline: 2px solid;
+}
+
+.help-link {
+  padding: 10px;
+  //font-size: 18px;
+  //border: 1px solid #000;
+  text-decoration: none;
+}
+
+#help-tool-dialog, #account-help-dialog {
+  display: none;
+  padding: 10px;
+  position: absolute;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+
+}
+
+.offscreen {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

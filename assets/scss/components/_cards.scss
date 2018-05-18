@@ -1,0 +1,155 @@
+/** testing out a new card layout **/
+
+.mm-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 2px;
+  background: $bg-color;
+  overflow: hidden;
+  color: #0a0a0a;
+
+  .mm-card-content {
+
+  }
+
+  .mm-card-media-container {
+    //padding-bottom: 56.25%; /* 16:9 ratio */
+    //height: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba( lighten( #444, 25), 0.4 );
+    height: 30vh;
+    max-height: 40vh;
+
+    .mm-card-lightbox-anchor {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .mm-card-media {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+
+  .mm-card-media-audio {
+    height: 50%;
+  }
+
+}
+
+
+
+
+
+//.mm-card {
+//  margin-bottom: 1rem;
+//  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+//  border-radius: 2px;
+//  background: $bg-color;
+//  overflow: hidden;
+//  color: #0a0a0a;
+//  //font-size: 0.875rem;
+//
+//  > :last-child {
+//    margin-bottom: 0;
+//  }
+//
+//  //> form {
+//  //  padding-top: 10px;
+//  //}
+//}
+//
+//.mm-card-media-container {
+//  padding-bottom: 56.25%; /* 16:9 ratio */
+//  height: 0;
+//  background-color: rgba(lighten(#444, 25), 0.4);
+//  min-height: 20vh;
+//  max-height: 40vh;
+//}
+//
+//.mm-card-list {
+//  margin-left: 0;
+//  list-style: none;
+//  // for bolts backend templates need to set padding left to 0
+//  padding-left: 0;
+//}
+//
+////.betterthumbs-card > :last-child {
+////  margin-bottom: 0;
+////}
+//
+//.mm-card-divider {
+//  padding: 1rem;
+//  background: $boltblue;
+//  color: $bg-color;
+//
+//  > :last-child {
+//    margin-bottom: 0;
+//  }
+//
+//}
+//
+//
+//
+//.mm-card-section {
+//  padding: 1rem;
+//
+//  > :last-child {
+//    margin-bottom: 0;
+//  }
+//}
+//
+//
+//
+.mm-card-list {
+  margin-left: 0;
+  list-style: none;
+  // for bolts backend templates need to set padding left to 0
+  padding-left: 0;
+}
+
+
+.mm-card-divider {
+  background: $boltblue;
+  color: $bg-color;
+  padding: 1rem;
+}
+
+
+.mm-card-section  {
+  padding: 1rem;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//
+//                    CARD DIVIDER BG COLORS
+//
+// ---------------------------------------------------------------------------------------------------------------------
+
+.mm-card-divider-image {
+  background: $boltblue;
+}
+
+
+.mm-card-divider-video {
+  background: $card-divider-bg-video;
+  color: $card-video-divider-text;
+}
+
+
+.mm-card-divider-audio {
+  background: $card-divider-bg-audio;
+  color: #fff;
+}
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+.mm-filter-switch-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
+.mm-filter-switch {
+  width: 60px;
+  height: 30px;
+  position: relative;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid grey;
+  text-align: center;
+  //padding: 6px 12px;
+}
+
+.mm-filter-switch-checkbox,
+.mm-filter-switch-radio {
+  clip: rect(0px, 0px, 0px, 0px);
+  position: absolute;
+
+  &:checked ~ label {
+    color: white;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:checked ~ label.mm-switch-label-audio {
+    background: $mmAudio;
+
+  }
+  &:checked ~ label.mm-switch-label-image {
+    background: $mmImage;
+
+  }
+  &:checked ~ label.mm-switch-label-video {
+    background: $mmVideo;
+    color: white;
+  }
+
+}
+
+
+
+.mm-filter-switch label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  padding: 6px 12px;
+}

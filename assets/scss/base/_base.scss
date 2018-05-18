@@ -1,0 +1,19 @@
+//html {
+//  font-family: $font-family;
+//  color: $font-color;
+//}
+//
+//body {
+//  background: $background;
+//  text-rendering: auto;
+//}
+
+/* temp comment */
+details {
+  margin-bottom: rem-calc(10);
+}
+
+.image-popup-fit-width:focus > .prime-cache-img  {
+  transform: scale(1.1);
+  filter: grayscale(90%);
+}
