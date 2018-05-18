@@ -5,7 +5,7 @@ A Bolt CMS extension to manage Media Files.
 in progress demos:  
 
 <video width="320" height="240" controls>
-  <source src="srceenshots/demo.mp4" type="video/mp4">
+  <source src="screenshots/demo.mp4" type="video/mp4">
 </video>
 
 
