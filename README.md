@@ -4,9 +4,28 @@ A Bolt CMS extension to manage Media Files.
 
 in progress demos:  
 
-<video width="320" height="240" controls>
-  <source src="screenshots/demo.mp4" type="video/mp4">
-</video>
+Full Demo:  
 
+![Media manager demo showing how images can be manipulated](screenshots/demo.gif "Bolt Media manager demo")  
 
-![Media manager demo showing how images can be manipulated](screenshots/demo.gif "Bolt Media manager demo")
+Search in directory:   
+
+You can search by file name or file type or by file name and file type  
+
+![Search by file name and file type](screenshots/mm-search.gif "Media Manager Search")  
+
+Edit file:  
+
+options shown:  
+
+  * Grayscale image - average, luminosity, lightness
+  * invert
+  * Black/White
+  * Vintage
+  * Technicolor
+  * Sepia 
+  * Brownie
+  * Kodachrome
+  * Polaroid  
+
+![Edit Image](screenshots/mm-edit-image.gif "Media Manager Edit an Image")
